@@ -19,12 +19,12 @@ class JournalViewController: UICollectionViewController, UICollectionViewDelegat
         
         navigationItem.title = "Journal"
         
-        collectionView?.backgroundColor = Color.fmnGray.value
+        collectionView?.backgroundColor = Color.fmnYellow.value
         collectionView?.alwaysBounceVertical = true
         
         collectionView?.register(JournalEntryCell.self, forCellWithReuseIdentifier: cellId)
         
-        loadEntries()
+        setData()
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -47,84 +47,18 @@ class JournalViewController: UICollectionViewController, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 100)
     }
-}
-
-class JournalEntryCell: BaseCell {
     
-    var entryData: JournalEntry? {
-        didSet {
-            dateLabel.text = entryData?.formatDate()
-            moodImageView.image = entryData?.mood?.getMoodImage()
-            titleLabel.text = entryData?.title
-            previewLabel.text = entryData?.text
-        }
-    }
-    
-    let moodImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "sad")
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 36
-        imageView.layer.masksToBounds = true
-        return imageView
-    }()
-    
-    let detailContainerView = UIView()
-    
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Ishi Minaj"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        return label
-    }()
-    
-    let dateLabel: UILabel = {
-        let label = UILabel()
-        label.text = "31 December 2019"
-        label.font = UIFont.systemFont(ofSize: 14, weight: .thin)
-        return label
-    }()
-    
-    let previewLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Today I went to the park and got some ice cream with sprinkles."
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = Color.fmnGray.value
-        return label
-    }()
-    
-    override func setupViews() {
-        backgroundColor = UIColor.white
-        
-        setupContainerView()
-        
-        addSubview(moodImageView)
-        moodImageView.image = UIImage(named: "happy")
-        moodImageView.translatesAutoresizingMaskIntoConstraints = false
-        addConstraintsWithFormat(format: "H:|-8-[v0(72)]", views: moodImageView)
-        addConstraintsWithFormat(format: "V:|-14-[v0(72)]-14-|", views: moodImageView)
-        
-        addSubview(detailContainerView)
-        addConstraintsWithFormat(format: "H:|-94-[v0]-8-|", views: detailContainerView)
-        addConstraintsWithFormat(format: "V:|-8-[v0(84)]", views: detailContainerView)
-        addCenterConstraint(type: .vertical, view: detailContainerView)
-    }
-    
-    private func setupContainerView() {
-        let headerContainerView = UIView()
-        headerContainerView.addSubview(titleLabel)
-        headerContainerView.addSubview(dateLabel)
-        headerContainerView.addConstraintsWithFormat(format: "H:|[v0]-(>=8)-[v1]|", views: titleLabel, dateLabel)
-        
-        detailContainerView.addSubview(headerContainerView)
-        detailContainerView.addSubview(previewLabel)
-        detailContainerView.addConstraintsWithFormat(format: "H:|[v0]|", views: headerContainerView)
-        detailContainerView.addConstraintsWithFormat(format: "V:|[v0(24)]-8-[v1]|", views: headerContainerView, previewLabel)
-        detailContainerView.addConstraintsWithFormat(format: "H:|[v0]|", views: previewLabel)
+    // Open journal detail view
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let layout = UICollectionViewFlowLayout()
+        let controller = JournalDetailViewController(collectionViewLayout: layout)
+        controller.entry = entries?[indexPath.item]
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
 extension UIView {
+    // Helper function for constraint visual format
     func addConstraintsWithFormat(format: String, views: UIView...) {
         var viewsDictionary = [String: UIView]()
         for (index, view) in views.enumerated() {
@@ -142,20 +76,5 @@ extension UIView {
     
     func addCenterConstraint(type: AxisType, view: UIView) {
         addConstraint(NSLayoutConstraint(item: view, attribute: (type == .horizontal ? .centerX : .centerY), relatedBy: .equal, toItem: self, attribute: (type == .horizontal ? .centerX : .centerY), multiplier: 1, constant: 0))
-    }
-}
-
-class BaseCell: UICollectionViewCell {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init of BaseCell in JournalViewController failed")
-    }
-    
-    func setupViews() {
-        backgroundColor = Color.fmnLightGray.value
     }
 }
