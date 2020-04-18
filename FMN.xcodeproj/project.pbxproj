@@ -26,6 +26,7 @@
 		7AD560882440A295007AE789 /* JournalEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD560842440A295007AE789 /* JournalEntry+CoreDataProperties.swift */; };
 		7AD560892440A295007AE789 /* Mood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD560852440A295007AE789 /* Mood+CoreDataClass.swift */; };
 		7AD5608A2440A295007AE789 /* Mood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD560862440A295007AE789 /* Mood+CoreDataProperties.swift */; };
+		7AE195B92449D9050037C418 /* JournalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE195B82449D9050037C418 /* JournalDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		7AD560842440A295007AE789 /* JournalEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JournalEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7AD560852440A295007AE789 /* Mood+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7AD560862440A295007AE789 /* Mood+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7AE195B82449D9050037C418 /* JournalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 				7ABAF1F82429C9BF0055C6D9 /* JournalEntryHelper.swift */,
 				7AD56079244024CE007AE789 /* JournalEntryCell.swift */,
 				7A6CED942440DA5B00C0A59F /* JournalDetailViewController.swift */,
+				7AE195B82449D9050037C418 /* JournalDetailView.swift */,
 			);
 			path = Journal;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				7AD5607A244024CF007AE789 /* JournalEntryCell.swift in Sources */,
 				7AD560872440A295007AE789 /* JournalEntry+CoreDataClass.swift in Sources */,
 				7A6CED952440DA5B00C0A59F /* JournalDetailViewController.swift in Sources */,
+				7AE195B92449D9050037C418 /* JournalDetailView.swift in Sources */,
 				7ABAF1F92429C9BF0055C6D9 /* JournalEntryHelper.swift in Sources */,
 				7ABAF1BB24292C270055C6D9 /* AppDelegate.swift in Sources */,
 				7ABAF1BD24292C270055C6D9 /* SceneDelegate.swift in Sources */,

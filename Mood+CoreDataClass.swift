@@ -14,6 +14,10 @@ let moodMap: [[String]] = [["depressed", "sad", "anxious"],
                             ["tired", "calm", "excited"],
                             ["relaxed", "happy", "ecstatic"]]
 
+let moodColorMap: [[UIColor]] = [[Color.fmnPurple.value, Color.fmnBlue.value, Color.fmnYellow.value],
+                                 [Color.fmnPurple.value, Color.fmnLightGray.value, Color.fmnYellow.value],
+                                 [Color.fmnPurple.value, Color.fmnBlue.value, Color.fmnYellow.value]]
+
 @objc(Mood)
 public class Mood: NSManagedObject {
 
@@ -33,10 +37,17 @@ public class Mood: NSManagedObject {
         }
     }
     
-    func getMoodImage() -> UIImage {
+    func getMoodImage() -> UIImage! {
         if let _name = name {
             return UIImage(named: _name)!
         }
         return UIImage(named: "calm")!
+    }
+    
+    func getMoodColor() -> UIColor {
+        if pleasantness >= -1 && pleasantness < 2 && energy >= -1 && energy < 2 {
+            return moodColorMap[Int(pleasantness) + 1][Int(energy) + 1]
+        }
+        return moodColorMap[0][0]
     }
 }

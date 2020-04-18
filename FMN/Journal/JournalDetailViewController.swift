@@ -18,8 +18,7 @@ class JournalDetailViewController: UICollectionViewController, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        collectionView?.backgroundColor = Color.fmnBlue.value
+        collectionView?.backgroundColor = entry?.mood?.getMoodColor()
     }
     
     
