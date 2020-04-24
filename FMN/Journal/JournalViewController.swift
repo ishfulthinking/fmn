@@ -11,17 +11,17 @@ import UIKit
 class JournalViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private let cellId = "cellId"
-    
     var entries: [JournalEntry]? = []
+    let addEntryImage = UIImage(systemName: "add")?.withRenderingMode(.alwaysOriginal)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Journal"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: addEntryImage, style: .plain, target: self, action: #selector(addEntryButtonTapped))
         
         collectionView?.backgroundColor = Color.fmnYellow.value
         collectionView?.alwaysBounceVertical = true
-        
         collectionView?.register(JournalEntryCell.self, forCellWithReuseIdentifier: cellId)
         
         setData()
@@ -50,31 +50,14 @@ class JournalViewController: UICollectionViewController, UICollectionViewDelegat
     
     // Open journal detail view
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let layout = UICollectionViewFlowLayout()
-        let controller = JournalDetailViewController(collectionViewLayout: layout)
+//        let layout = UICollectionViewFlowLayout()
+//        let controller = JournalDetailViewController(collectionViewLayout: layout)
+        let controller = JournalDetailViewController()
         controller.entry = entries?[indexPath.item]
         navigationController?.pushViewController(controller, animated: true)
     }
-}
-
-extension UIView {
-    // Helper function for constraint visual format
-    func addConstraintsWithFormat(format: String, views: UIView...) {
-        var viewsDictionary = [String: UIView]()
-        for (index, view) in views.enumerated() {
-            let key = "v\(index)"
-            viewsDictionary[key] = view
-            view.translatesAutoresizingMaskIntoConstraints = false
-        }
-        
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
-    }
     
-    enum AxisType {
-        case horizontal, vertical
-    }
-    
-    func addCenterConstraint(type: AxisType, view: UIView) {
-        addConstraint(NSLayoutConstraint(item: view, attribute: (type == .horizontal ? .centerX : .centerY), relatedBy: .equal, toItem: self, attribute: (type == .horizontal ? .centerX : .centerY), multiplier: 1, constant: 0))
+    @objc private func addEntryButtonTapped() {
+        print("Add entry button tapped!")
     }
 }

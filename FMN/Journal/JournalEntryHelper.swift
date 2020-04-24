@@ -39,9 +39,9 @@ extension JournalViewController {
         if let context = delegate?.persistentContainer.viewContext {
             print("OK! Context looks great!")
             
-            createJournalEntry(context: context, relativeDate: 0, pleasantness: 1, energy: 0, title: "A good day at the beach", text: "Today I went swimming at the beach. It was a blast!")
-//            createJournalEntry(context: context, relativeDate: -2, pleasantness: 1, energy: 1, title: "Universal Studios day!", text: "I think I have a concussion after riding the Hulk 17 times in less than an hour.")
-//            createJournalEntry(context: context, relativeDate: -1, pleasantness: -1, energy: 1, title: "Waiting on job application", text: "Super anxious; waiting back to hear from Doofenshmirtz Evil Inc. to see if I got the internship...")
+            createJournalEntry(context: context, relativeDate: 0, pleasantness: 1, energy: 0, title: "A good day at the beach", text: "Today I went swimming at the beach. It was a blast, especially since I saw dolphins. But they attacked!")
+            createJournalEntry(context: context, relativeDate: -2, pleasantness: 1, energy: 1, title: "Universal Studios day!", text: "I think I have a concussion after riding the Hulk 17 times in less than an hour.")
+            createJournalEntry(context: context, relativeDate: -1, pleasantness: -1, energy: 1, title: "Waiting on job application, oh geez", text: "Super anxious; waiting back to hear from Doofenshmirtz Evil Inc. to see if I got the internship...")
             
             do {
                 try(context.save())
@@ -54,13 +54,12 @@ extension JournalViewController {
     }
     
     private func createJournalEntry(context: NSManagedObjectContext, relativeDate: Int, pleasantness: Int, energy: Int, title: String, text: String) {
-//        let entry = NSEntityDescription.insertNewObject(forEntityName: "JournalEntry", into: context) as! JournalEntry
-        
         var dayComponent = DateComponents()
         dayComponent.day = relativeDate
         let entryMood = NSEntityDescription.insertNewObject(forEntityName: "Mood", into: context) as! Mood
         entryMood.pleasantness = Int16(pleasantness)
         entryMood.energy = Int16(energy)
+        entryMood.setName()
         
         JournalEntry(date: Calendar.current.date(byAdding: dayComponent, to: Date())!, mood: entryMood, title: title, text: text, insertIntoManagedObjectContext: context)
         

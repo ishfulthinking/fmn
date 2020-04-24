@@ -14,10 +14,13 @@ class JournalEntryCell: BaseCell {
         didSet {
             dateLabel.text = formatDate(date: entryData?.date!)
             moodImageView.image = entryData?.mood?.getMoodImage()
+            moodColor = entryData?.mood?.getMoodColor() ?? Color.fmnGray.value
             titleLabel.text = entryData?.title
             previewLabel.text = entryData?.text
         }
     }
+    
+    var entryMood: Mood?
     
     let moodImageView: UIImageView = {
         let imageView = UIImageView()
@@ -28,12 +31,16 @@ class JournalEntryCell: BaseCell {
         return imageView
     }()
     
+    var moodColor: UIColor?
+    
     let detailContainerView = UIView()
     
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Untitled"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.lineBreakMode = .byTruncatingTail
+        label.numberOfLines = 1
         return label
     }()
     
@@ -58,6 +65,7 @@ class JournalEntryCell: BaseCell {
         setupContainerView()
         
         addSubview(moodImageView)
+        moodImageView.backgroundColor = entryMood?.getMoodColor() ?? Color.fmnGray.value
         moodImageView.image = UIImage(named: "happy")
         moodImageView.translatesAutoresizingMaskIntoConstraints = false
         addConstraintsWithFormat(format: "H:|-8-[v0(72)]", views: moodImageView)
@@ -73,7 +81,7 @@ class JournalEntryCell: BaseCell {
         let headerContainerView = UIView()
         headerContainerView.addSubview(titleLabel)
         headerContainerView.addSubview(dateLabel)
-        headerContainerView.addConstraintsWithFormat(format: "H:|[v0]-(>=8)-[v1]|", views: titleLabel, dateLabel)
+        headerContainerView.addConstraintsWithFormat(format: "H:|-0-[v0(<=192)]-(>=8)-[v1]-4@750-|", views: titleLabel, dateLabel)
         
         detailContainerView.addSubview(headerContainerView)
         detailContainerView.addSubview(previewLabel)

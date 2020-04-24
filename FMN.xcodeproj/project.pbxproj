@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031BCB9224508CCC00EE2568 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BCB9124508CCC00EE2568 /* ViewHelper.swift */; };
 		7A6CED952440DA5B00C0A59F /* JournalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6CED942440DA5B00C0A59F /* JournalDetailViewController.swift */; };
 		7ABAF1BB24292C270055C6D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABAF1BA24292C270055C6D9 /* AppDelegate.swift */; };
 		7ABAF1BD24292C270055C6D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABAF1BC24292C270055C6D9 /* SceneDelegate.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		031BCB9124508CCC00EE2568 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		7A6CED942440DA5B00C0A59F /* JournalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalDetailViewController.swift; sourceTree = "<group>"; };
 		7ABAF1B724292C270055C6D9 /* FMN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FMN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ABAF1BA24292C270055C6D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				7ABAF1F4242972D70055C6D9 /* Colors.swift */,
 				7ABAF1F62429A0FF0055C6D9 /* Images.swift */,
+				031BCB9124508CCC00EE2568 /* ViewHelper.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				7AD5608A2440A295007AE789 /* Mood+CoreDataProperties.swift in Sources */,
 				7ABAF1F2242969900055C6D9 /* JournalViewController.swift in Sources */,
 				7AD560892440A295007AE789 /* Mood+CoreDataClass.swift in Sources */,
+				031BCB9224508CCC00EE2568 /* ViewHelper.swift in Sources */,
 				7ABAF1F5242972D70055C6D9 /* Colors.swift in Sources */,
 				7ABAF1EF2429654B0055C6D9 /* DashboardView.swift in Sources */,
 				7ABAF1F72429A0FF0055C6D9 /* Images.swift in Sources */,
